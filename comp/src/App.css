@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+  padding: 20px;
+  font-family: sans-serif;
+  background-color: #f7f7f7;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.control {
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 90%;
+  height: 300px;
+  font-family: monospace;
+  font-size: 14px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solid #333;
+  border-radius: 5px;
+}
+
+pre.output {
+  background: #222;
+  color: #0f0;
+  padding: 20px;
+  text-align: left;
+  overflow-x: auto;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+select, button {
+  padding: 10px;
+  margin-right: 10px;
+  font-size: 14px;
+}

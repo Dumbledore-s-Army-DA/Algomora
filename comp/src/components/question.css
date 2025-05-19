@@ -1,0 +1,133 @@
+body{
+  background-color: #ffffff;
+}
+
+.questions-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+
+  box-shadow: 0px 8px 16px rgba(155, 89, 182, 0.3);
+  font-family: 'Poppins', sans-serif;
+  color: #4b0082;
+}
+
+/* Title */
+.questions-title {
+
+  color: #7c3aed;
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+
+/* Difficulty Select */
+.difficulty-select {
+  padding: 8px 12px;
+  font-size: 16px;
+
+  border: 2px solid #d8b4fe;
+  background-color: white;
+  color: #6b21a8;
+  margin-bottom: 20px;
+}
+
+/* Shards Section */
+.shards-section {
+  margin-bottom: 20px;
+}
+
+.shards-count {
+  font-size: 24px;
+  font-weight: bold;
+  color: #7c3aed;
+}
+
+/* Questions List */
+.questions-list {
+  margin-top: 0px;
+}
+
+.question-item {
+  background-color: #ffffff;
+
+  margin-bottom: 3px;
+  border: 0px solid rgb(0, 0, 0);
+  box-shadow: 0px 4px 8px rgba(155, 89, 182, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 70px; /* Minimum height for each question box */
+  overflow: hidden;
+}
+
+/* Question Title */
+.question-item h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #6b21a8;
+}
+
+/* Question Description */
+.question-item p {
+  font-size: 16px;
+  color: #6b21a8;
+}
+
+/* Solve Button */
+.line {
+  display: flex;
+  justify-content: space-between; /* Align content horizontally with space between */
+  align-items: center; /* Vertically center items */
+  gap: 20px; /* Space between items */
+  background-color: #ffffff;
+  padding: 15px;
+  margin-bottom: 10px;
+
+  box-shadow: 0px 4px 8px rgba(155, 89, 182, 0.3);
+}
+
+/* Question Title */
+.line h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #6b21a8;
+  margin: 0;
+  flex-grow: 1; /* Make the title take as much space as possible */
+}
+
+/* Difficulty and Shards Reward */
+.line p {
+  font-size: 16px;
+  color: #6b21a8;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Solve Button */
+.solve-button {
+  padding: 10px 20px;
+  background-color: #9d4edd;
+  color: white;
+  border: 1px solid black;
+  font-weight: bold;
+  text-shadow: 1px 1px black;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.solve-button:hover {
+  background-color: #7b2cbf;
+
+  transform: translateY(3px);
+}
+
+
+/* No Questions Message */
+.no-questions {
+  font-size: 18px;
+  color: #6b21a8;
+  text-align: center;
+}

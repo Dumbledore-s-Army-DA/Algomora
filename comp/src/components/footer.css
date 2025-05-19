@@ -1,0 +1,47 @@
+/* Footer styles */
+footer {
+    background-color: #9737d651;
+    color: #000000;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  footer a {
+    color: #000000;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Add social media icons */
+  footer .social-icons {
+    margin-top: 10px;
+  }
+  
+  footer .social-icons a {
+    margin: 0 15px;
+    font-size: 20px;
+  }
+  
+  /* Responsive for smaller screens */
+  @media (max-width: 768px) {
+    footer {
+      font-size: 12px;
+    }
+  
+    footer .social-icons {
+      margin-top: 15px;
+    }
+  
+    footer .social-icons a {
+      font-size: 18px;
+      margin: 0 10px;
+    }
+  }
+  

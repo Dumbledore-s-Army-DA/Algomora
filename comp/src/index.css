@@ -1,0 +1,32 @@
+/* Reset some default styles for consistency across browsers */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Set a consistent background color and font size */
+body {
+  background-color: #f4f4f9;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Add some space between elements */
+.content {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Add a container class for pages */
+.container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1200px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
