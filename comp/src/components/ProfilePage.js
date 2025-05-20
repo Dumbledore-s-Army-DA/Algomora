@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../components/profile.css'; // Assuming you have a CSS file for styling
+import '../components/profile.css';
+
 const ProfilePage = () => {
   const [userData, setUserData] = useState(null);
   const [name, setName] = useState('');
@@ -34,28 +35,38 @@ const ProfilePage = () => {
       const formData = new FormData();
       formData.append('photo', file);
 
-      axios.post(`http://localhost:5000/api/users/uploadPhoto/${userId}`, formData)
-        .then(response => setPhoto(response.data.photo))
-        .catch(err => console.error('Photo upload error:', err));
+      axios
+        .post(`http://localhost:5000/api/users/uploadPhoto/${userId}`, formData)
+        .then((response) => setPhoto(response.data.photo))
+        .catch((err) => console.error('Photo upload error:', err));
     }
   };
 
   return (
     <div className="profile-container">
-      <h2>Profile</h2>
-      <div>
-        <h3>Name: {name}</h3>
-        <input type="file" onChange={handlePhotoChange} />
-        {photo && <img src={`http://localhost:5000${photo}`} alt="Profile" width="150" />}
+      
+
+      <div className="profile-info">
+        <div className="profile-photo">
+          {photo && <img src={`http://localhost:5000${photo}`} alt="Profile" />}
+        </div>
+        <div className="profile-details">
+          <h3>{name}</h3>
+          <input type="file" onChange={handlePhotoChange} />
+          <div className="shards">Shards: {shards}</div>
+        </div>
       </div>
-      <div>
+
+      <div className="cards-section">
         <h4>Cards Earned:</h4>
-        <ul>
-          {cards.map(card => <li key={card._id}>{card.name}</li>)}
+        <ul className="card-list">
+          {cards.map((card) => (
+            <li key={card._id}>
+              <img src={card.image} alt={card.name} />
+              <span>{card.name}</span>
+            </li>
+          ))}
         </ul>
-      </div>
-      <div>
-        <h4>Shards: {shards}</h4>
       </div>
     </div>
   );

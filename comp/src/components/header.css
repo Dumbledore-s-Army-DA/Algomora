@@ -10,11 +10,12 @@ header {
   font-family: 'Fire', sans-serif;
   background-color: transparent; /* keep it transparent */
   color: #ac1515;
-  padding: 8px 0; /* thinner padding vertically */
+  padding: 5px 0; /* thinner padding vertically */
   margin: 0;       /* remove any default margin */
   text-align: center;
   font-size: 28px;
   font-weight: bold;
+
   position: fixed;  /* stick to the top */
   top: 0;
   left: 0;
@@ -55,7 +56,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   background-color: #222;
-  padding: 1px 20px;
+  padding: 5px 20px;
   margin-top: -8px;
 }
 
@@ -72,6 +73,7 @@ ul.left {
 }
 
 ul.right {
+  
   gap: 10px;
 }
 

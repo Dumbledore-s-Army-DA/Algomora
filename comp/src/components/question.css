@@ -24,7 +24,7 @@ body {
   margin: 8cm;
   margin-top: 2cm;
   padding: 20px;
-  background-color: rgba(21, 70, 23, 0.445);
+  background-color: rgba(21, 70, 23, 0);
   border: 1px solid rgba(0, 0, 0, 0);
   color: rgb(255, 255, 255);
   font-family: 'Fire', monospace;
@@ -47,7 +47,9 @@ body {
 
 /* Difficulty Select */
 .difficulty-select {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
   padding: 5px;
+  font-weight: bold;
   font-size: 14px;
   border: 1px solid black;
   background-color: rgba(255, 255, 255, 0);
@@ -74,9 +76,9 @@ body {
 /* Each Question */
 .question-item {
   background-color: rgba(189, 15, 180, 0);
-  margin-bottom: 2px;
+  margin-bottom: 1px;
   
-  padding: 2px;
+  padding: 0px;
 }
 
 /* Question Title */
@@ -146,3 +148,87 @@ body {
   color: rgb(255, 255, 255);
   text-align: center;
 }
+
+/* Main Container */
+.questions-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+  margin: 8cm auto;
+  margin-top: 2cm;
+  padding: 20px;
+  background-color: rgba(21, 70, 23, 0);
+  border: 1px solid rgba(0, 0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-family: 'Fire', monospace;
+}
+
+/* Left section: questions list */
+.left-section {
+  font-family:'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  background-color: #222222cb;
+  padding: 10px;
+  width: 65%;
+  border-radius: 15px;
+}
+
+/* Right section: calendar, daily question, stats */
+.right-section {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  background-color: #222222e3;
+  padding: 25px;
+  gap: 20px;
+  border-radius: 15px;
+  margin-right: -15px;
+}
+
+/* Calendar styling (optional enhancements) */
+.react-calendar {
+  width: 100%;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: 1px solid #000000;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* Daily Question box */
+.daily-question {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #444;
+}
+
+.daily-question h3 {
+  margin-top: 0;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+/* Question counts */
+.question-counts {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #444;
+}
+
+.question-counts h3 {
+  margin-top: 0;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+/* Adjust title */
+.questions-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+
+/* Other styles unchanged */
+
