@@ -1,7 +1,12 @@
 /* Login Page */
+.login-container{
+  margin-top: 5cm;
+}
+
 .login-form {
     display: flex;
     flex-direction: column;
+    margin-top: 2cm;
     gap: 20px;
   }
   
