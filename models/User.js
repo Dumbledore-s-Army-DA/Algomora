@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   photo: String,
+  house:String,
   shards: { type: Number, default: 0 },
   cards: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Card' }],
   questionsSolved: [{

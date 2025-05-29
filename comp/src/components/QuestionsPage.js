@@ -13,6 +13,35 @@ const QuestionsPage = () => {
   const [dailyQuestion, setDailyQuestion] = useState(null);
   const [questionCounts, setQuestionCounts] = useState({ Easy: 0, Medium: 0, Hard: 0 });
   const [searchTerm, setSearchTerm] = useState('');
+  const [userHouse, setUserHouse] = useState(null);
+
+  const userId = localStorage.getItem('userId');
+
+  // Fetch user and apply house class
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/users/${userId}`);
+        const user = response.data;
+        setUserHouse(user.house);
+
+        // Remove all previous house classes
+        document.body.classList.remove('gryffindor', 'slytherin', 'ravenclaw', 'hufflepuff');
+        
+        // Add new house class
+        if (user.house) {
+          document.body.classList.add(user.house.toLowerCase());
+          console.log('User house:', user.house);
+
+        }
+      } catch (err) {
+        console.error('Error fetching user:', err);
+      }
+    };
+    
+    if (userId) fetchUserData();
+  }, [userId]);
+
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -53,48 +82,50 @@ const QuestionsPage = () => {
 
   return (
     <div className="questions-container">
-      <div className="left-section">
-        <h1 className="questions-title">Difficulty</h1>
-        <select 
-          className="difficulty-select"
-          onChange={(e) => setDifficulty(e.target.value)} 
-          value={difficulty}
-        >
-          <option value="Easy">Easy</option>
-          <option value="Medium">Medium</option>
-          <option value="Hard">Hard</option>
-        </select>
-
-        <input
-          type="text"
-          placeholder="Search questions..."
-          className="search-input"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-
+    <div className="left-section">
+      <div className="top-bar">
         <div className="questions-list">
-          <h2>Questions</h2>
-          {questions.length === 0 ? (
-            <p className="no-questions">No questions found for this difficulty.</p>
-          ) : (
-            questions
-              .filter((question) =>
-                question.title.toLowerCase().includes(searchTerm.toLowerCase())
-              )
-              .map((question) => (
-                <div key={question._id} className="question-item">
-                  <div className="line">
-                    <h3>{question.title}</h3>
-                    <p>{question.difficulty}</p>
-                    <p><strong>Shards Reward:</strong> {question.shardsReward}</p>
-                    <Link to={`/solve/${question._id}`} className="solve-button">Solve</Link>
-                  </div>
-                </div>
-              ))
-          )}
+          
+          <input
+            type="text"
+            placeholder="Search questions..."
+            className="search-input"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <select
+            className="difficulty-select"
+            onChange={(e) => setDifficulty(e.target.value)}
+            value={difficulty}
+          >
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
         </div>
+        <span className="house-icon2" aria-label={`${userHouse} emblem`} />
       </div>
+
+      {questions.length === 0 ? (
+        <p className="no-questions">No questions found for this difficulty.</p>
+      ) : (
+        questions
+          .filter((question) =>
+            question.title.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+          .map((question) => (
+            <div key={question._id} className="question-item">
+              <div className="line">
+                <h3>{question.title}</h3>
+                <p>{question.difficulty}</p>
+                <p><strong>Shards Reward:</strong> {question.shardsReward}</p>
+                <Link to={`/solve/${question._id}`} className="solve-button">Solve</Link>
+              </div>
+            </div>
+          ))
+      )}
+    </div>
+
 
       <div className="right-section">
         <Calendar onClickDay={handleDateClick} value={selectedDate} />

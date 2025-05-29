@@ -4,10 +4,15 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'monop';
+  src: url('./fonts/OPTITriplettBoldAgency.otf') format('opentype'); /* Corrected path */
+
+}
 
 body {
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
-  background-image: url("./images/back.jpg");
+
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -15,6 +20,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .manual-test-box{
   background-color: #ffffff;
   border: 2px solid rgb(230, 230, 138);
