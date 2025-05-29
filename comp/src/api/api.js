@@ -1,32 +1,21 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
-// User-related APIs
-export const login = (username, password) => {
-  return axios.post(`${API_URL}/users/login`, { username, password });
-};
+export const login = (username, password) =>
+  axios.post(`${API_URL}/users/login`, { username, password });
 
-export const signup = (userData) => {
-  return axios.post(`${API_URL}/users/signup`, userData);
-};
+export const signup = (userData) =>
+  axios.post(`${API_URL}/users/signup`, userData);
 
-export const getUserData = (userId) => {
-  return axios.get(`${API_URL}/users/${userId}`);
-};
+export const getUserData = (userId) =>
+  axios.get(`${API_URL}/users/${userId}`);
 
+export const getQuestions = (difficulty) =>
+  axios.get(`${API_URL}/questions/difficulty/${difficulty}`);
 
-// Questions-related APIs
-export const getQuestions = (difficulty) => {
-  return axios.get(`${API_URL}/questions/difficulty/${difficulty}`);
-};
+export const getQuestionById = (id) =>
+  axios.get(`${API_URL}/questions/${id}`);
 
-// New API function to get a question by its ID
-export const getQuestionById = (id) => {
-  return axios.get(`${API_URL}/questions/${id}`);
-};
-
-// Shards-related API
-export const getShards = (userId) => {
-  return axios.get(`${API_URL}/shards/${userId}`);
-};
+export const getShards = (userId) =>
+  axios.get(`${API_URL}/shards/${userId}`);

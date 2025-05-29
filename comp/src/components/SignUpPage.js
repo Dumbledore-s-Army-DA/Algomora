@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { signup } from '../api/api'; // make sure path is correct
 
 const SignUpPage = () => {
   const [name, setName] = useState('');
@@ -11,11 +11,16 @@ const SignUpPage = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    setError(null);
     try {
-      const response = await axios.post('http://localhost:5000/api/users/signup', { name, username, password });
-      navigate('/login'); // Redirect to Login after successful signup
+      await signup({ name, username, password });
+      navigate('/login');
     } catch (err) {
-      setError('Error during sign up');
+      if (err.response?.data?.error?.includes('E11000')) {
+        setError('Username already exists.');
+      } else {
+        setError(err.response?.data?.error || 'Signup failed. Try again.');
+      }
     }
   };
 
@@ -23,31 +28,28 @@ const SignUpPage = () => {
     <div className="signup-container">
       <form onSubmit={handleSignup}>
         <h2>Sign Up</h2>
-        <div>
-          <input
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        {error && <p>{error}</p>}
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type="submit">Sign Up</button>
       </form>
     </div>

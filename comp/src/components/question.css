@@ -1,133 +1,234 @@
-body{
-  background-color: #ffffff;
+@font-face {
+  font-family: 'Fire';
+  src: url('./fonts/HARRYP__.TTF') format('truetype'); /* Corrected path */
+  font-weight: normal;
+  font-style: normal;
 }
 
-.questions-container {
-  max-width: 1200px;
-  margin: 50px auto;
-  padding: 30px;
-  background-color: #ffffff;
+body {
+  background-image: url('./images/back3.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 
-  box-shadow: 0px 8px 16px rgba(155, 89, 182, 0.3);
-  font-family: 'Poppins', sans-serif;
-  color: #4b0082;
+  color: black;
+}
+
+
+/* Container */
+.questions-container {
+  max-width: 100%;
+  margin: 8cm;
+  margin-top: 2cm;
+  padding: 20px;
+  background-color: rgba(21, 70, 23, 0);
+  border: 1px solid rgba(0, 0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-family: 'Fire', monospace;
+}
+
+/* Remove curved overlays entirely */
+.questions-container::before,
+.questions-container::after {
+  display: none;
 }
 
 /* Title */
 .questions-title {
-
-  color: #7c3aed;
-  margin-bottom: 20px;
-  font-size: 26px;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-decoration: underline;
 }
 
 /* Difficulty Select */
 .difficulty-select {
-  padding: 8px 12px;
-  font-size: 16px;
-
-  border: 2px solid #d8b4fe;
-  background-color: white;
-  color: #6b21a8;
-  margin-bottom: 20px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  border: 1px solid black;
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(255, 255, 255);
+  margin-bottom: 10px;
 }
 
 /* Shards Section */
 .shards-section {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .shards-count {
-  font-size: 24px;
+  font-size: 16px;
   font-weight: bold;
-  color: #7c3aed;
+  color: rgb(255, 255, 255);
 }
 
 /* Questions List */
 .questions-list {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
+/* Each Question */
 .question-item {
-  background-color: #ffffff;
-
-  margin-bottom: 3px;
-  border: 0px solid rgb(0, 0, 0);
-  box-shadow: 0px 4px 8px rgba(155, 89, 182, 0.3);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  height: 70px; /* Minimum height for each question box */
-  overflow: hidden;
+  background-color: rgba(189, 15, 180, 0);
+  margin-bottom: 1px;
+  
+  padding: 0px;
 }
 
 /* Question Title */
 .question-item h3 {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
-  color: #6b21a8;
+  color: rgb(255, 255, 255);
+  margin: 0;
 }
 
 /* Question Description */
 .question-item p {
-  font-size: 16px;
-  color: #6b21a8;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  margin: 0;
 }
 
-/* Solve Button */
+/* Line section with solve button */
 .line {
   display: flex;
-  justify-content: space-between; /* Align content horizontally with space between */
-  align-items: center; /* Vertically center items */
-  gap: 20px; /* Space between items */
-  background-color: #ffffff;
-  padding: 15px;
-  margin-bottom: 10px;
-
-  box-shadow: 0px 4px 8px rgba(155, 89, 182, 0.3);
-}
-
-/* Question Title */
-.line h3 {
-  font-size: 20px;
-  font-weight: bold;
-  color: #6b21a8;
-  margin: 0;
-  flex-grow: 1; /* Make the title take as much space as possible */
-}
-
-/* Difficulty and Shards Reward */
-.line p {
-  font-size: 16px;
-  color: #6b21a8;
-  font-weight: bold;
-  margin: 0;
-}
-
-/* Solve Button */
-.solve-button {
-  padding: 10px 20px;
-  background-color: #9d4edd;
-  color: white;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background-color: #222;
+  padding: 5px;
+  margin-bottom: 5px;
   border: 1px solid black;
+  color: rgb(255, 255, 255);
+}
+
+/* Line titles */
+.line h3 {
+  font-size: 16px;
   font-weight: bold;
-  text-shadow: 1px 1px black;
+  color: rgb(216, 216, 216);
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* Difficulty / reward text */
+.line p {
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  margin: 0;
+}
+
+/* Solve button */
+.solve-button {
+  padding: 6px 10px;
+  background-color: #eeeeee00;
+  color: rgb(255, 255, 255);
+  border: 1px solid black;
   cursor: pointer;
-  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
   text-decoration: none;
-  transition: all 0.2s ease;
 }
 
 .solve-button:hover {
-  background-color: #7b2cbf;
-
-  transform: translateY(3px);
+  background-color: #cccccc00;
 }
-
 
 /* No Questions Message */
 .no-questions {
-  font-size: 18px;
-  color: #6b21a8;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
   text-align: center;
 }
+
+/* Main Container */
+.questions-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+  margin: 8cm auto;
+  margin-top: 2cm;
+  padding: 20px;
+  background-color: rgba(21, 70, 23, 0);
+  border: 1px solid rgba(0, 0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-family: 'Fire', monospace;
+}
+
+/* Left section: questions list */
+.left-section {
+  font-family:'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  background-color: #222222cb;
+  padding: 10px;
+  width: 65%;
+  border-radius: 15px;
+}
+
+/* Right section: calendar, daily question, stats */
+.right-section {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  background-color: #222222e3;
+  padding: 25px;
+  gap: 20px;
+  border-radius: 15px;
+  margin-right: -15px;
+}
+
+/* Calendar styling (optional enhancements) */
+.react-calendar {
+  width: 100%;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: 1px solid #000000;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* Daily Question box */
+.daily-question {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #444;
+}
+
+.daily-question h3 {
+  margin-top: 0;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+/* Question counts */
+.question-counts {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #444;
+}
+
+.question-counts h3 {
+  margin-top: 0;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+/* Adjust title */
+.questions-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+
+/* Other styles unchanged */
+
