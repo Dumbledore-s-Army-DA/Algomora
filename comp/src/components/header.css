@@ -6,26 +6,80 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'monop';
+  src: url('./fonts/ShakeAndBake_ULTRA_OL.otf') format('opentype'); /* Corrected path */
+  font-weight: normal;
+  font-style: normal;
+}
 header {
   font-family: 'Fire', sans-serif;
-  background-color: transparent; /* keep it transparent */
+  background: linear-gradient(
+    to bottom, 
+    var(--bg) 0%,           
+    rgba(146, 138, 138, 0) 100%  
+  );
   color: #ac1515;
-  padding: 5px 0; /* thinner padding vertically */
-  margin: 0;       /* remove any default margin */
+  padding: 5px 0;
+  margin: 0;
   text-align: center;
   font-size: 28px;
   font-weight: bold;
-
-  position: fixed;  /* stick to the top */
+  
+  position: fixed; /* fixed to stay on top */
   top: 0;
   left: 0;
   width: 100%;
+  height: 70px; /* explicitly set header height */
   z-index: 1000;
+}
+
+body.gryffindor {
+  --bg: #631718;
+  --accent: #dfbe77;
+
+  --prof-circle:rgb(255, 179, 14);
+}
+
+body.slytherin {
+  --bg: #1a472a;
+  --accent: #77ad5e;
+  --text: rgb(0, 0, 0);
+  --prof-circle: rgb(0, 0, 0);
+}
+
+body.ravenclaw {
+  --bg: #0e1a40;
+  --accent: #8a6733;
+  --text: rgb(0, 0, 0);
+  --prof-circle: #946b2d;
+}
+
+body.hufflepuff {
+  --bg: #96854e;
+  --accent: #b4a995;
+  --text: black;
+ --prof-circle: #d8b235;
 }
 
 /* Space below header so content doesn't go under it */
 body {
   padding-top: 50px; /* adjust based on header height */
+}
+
+.home-with-crest {
+  display: inline-flex;
+  align-items: center;
+}
+
+.hogwarts-crest {
+  display: inline-block;
+  width: 60px; /* Adjust size as needed */
+  height: 60px;
+  background-image: url('./images/snitch.png'); /* path relative to public folder */
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: -2px;
 }
 
 header .logo {
@@ -55,7 +109,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #222;
+
   padding: 5px 20px;
   margin-top: -8px;
 }
@@ -90,15 +144,18 @@ a {
 .header-profile-photo {
   width: 40px;
   height: 40px;
+  border: 2px solid var(--prof-circle);
   border-radius: 50%;
   object-fit: cover;
   margin-top: 1cm;
 }
 
 
+
 nav ul li a {
-  color: #e9dd72;
+  color: var(--accent);
   text-decoration: none;
+  text-shadow: 2px 2px black;
   font-weight: 500;
   font-size: 20px;
   padding: 4px 8px;
@@ -106,8 +163,9 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  background-color: #ddd;
+  
   border-radius: 4px;
+  border: 2px solid #e9dd72;
 }
 
 .right{
@@ -128,4 +186,56 @@ nav ul li a:hover {
   nav ul li {
     margin: 3px 0;
   }
+}
+
+.header-profile-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.house-icon {
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* House emblem backgrounds based on body class */
+body.gryffindor .house-icon {
+  background-image: url('./images/gryffindorprof.png');
+  margin-bottom: -45px;
+  transform: rotate(30deg);
+  width: 162px;
+  height: 122px;
+  
+}
+
+body.slytherin .house-icon {
+  background-image: url('./images/snake2.png');
+  margin-bottom: -45px;
+  width: 85px;
+  height: 42px;
+  transform: rotate(0deg);
+}
+
+body.ravenclaw .house-icon {
+  background-image: url('./images/tiara.png');
+  width: 85px;
+  height: 42px;
+  margin-bottom: -1cm;
+}
+
+body.hufflepuff .house-icon {
+  background-image: url('./images/hufflepuff.png');
+  margin-bottom: -1cm;
+    width: 85px;
+  height: 42px;
+}
+
+.header-profile-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }

@@ -5,43 +5,69 @@ import { getUserData } from '../api/api';
 
 const Header = () => {
   const [photo, setPhoto] = useState(null);
+  const [house, setHouse] = useState(null);
   const userId = localStorage.getItem('userId');
 
   useEffect(() => {
-    if (userId) {
-      getUserData(userId)
-        .then(response => {
-          setPhoto(response.data.photo);
-        })
-        .catch(err => console.error('Failed to fetch user for header', err));
-    }
+    if (!userId) return;
+
+    let previousHouseClass = null;
+
+    getUserData(userId)
+      .then(response => {
+        setPhoto(response.data.photo);
+        const userHouse = response.data.house ? response.data.house.toLowerCase() : null;
+        setHouse(userHouse);
+
+        if (userHouse) {
+          // Remove old house classes
+          ['gryffindor', 'slytherin', 'ravenclaw', 'hufflepuff'].forEach(h => {
+            document.body.classList.remove(h);
+          });
+          document.body.classList.add(userHouse);
+          previousHouseClass = userHouse;
+        }
+      })
+      .catch(err => console.error('Failed to fetch user for header', err));
+
+    return () => {
+      if (previousHouseClass) {
+        document.body.classList.remove(previousHouseClass);
+      }
+    };
   }, [userId]);
 
   return (
-    <header>
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/signup">Sign Up</Link></li>
-          <li><Link to="/questions">Questions</Link></li>
-          <li><Link to="/shards">Shards</Link></li>
-        </ul>
-        <ul className="right">
-          {userId && photo && (
-            <li>
-              <Link to={`/profile/${userId}`}>
-                <img
-                  src={`http://localhost:5000${photo}`}
-                  alt="Profile"
-                  className="header-profile-photo"
-                />
-              </Link>
-            </li>
-          )}
-        </ul>
-      </nav>
-    </header>
+    <>
+      <header>
+        <nav>
+          
+          <ul>
+            <span className="hogwarts-crest" />
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/signup">Sign Up</Link></li>
+            <li><Link to="/questions">Questions</Link></li>
+            <li><Link to="/shards">Shards</Link></li>
+          </ul>
+          <ul className="right">
+            {userId && photo && (
+              <li className="header-user-info">
+                <Link to={`/profile/${userId}`} className="header-profile-link">
+                  <span className="house-icon" aria-label={`${house} emblem`} />
+                  <img
+                    src={`http://localhost:5000${photo}`}
+                    alt="Profile"
+                    className="header-profile-photo"
+                  />
+                </Link>
+              </li>
+            )}
+          </ul>
+        </nav>
+      </header>
+      <div className="header-fade" />
+    </>
   );
 };
 

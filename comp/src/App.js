@@ -8,6 +8,8 @@ import ShardsPage from './components/ShardsPage';
 import Header from './components/Header';
 import SolvePage from './components/SolvePage';
 import Footer from './components/Footer';
+import './components/question.css'; // or wherever it is located
+
 
 const App = () => {
   return (

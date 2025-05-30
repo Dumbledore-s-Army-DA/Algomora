@@ -3,6 +3,15 @@ import { useParams } from 'react-router-dom';
 import { getQuestionById } from '../api/api';
 import axios from 'axios';
 import '../components/solve.css';
+import SplitPane from 'react-split-pane';
+import CodeMirror from '@uiw/react-codemirror';
+import { cpp } from '@codemirror/lang-cpp';
+import { python } from '@codemirror/lang-python';
+import { java } from '@codemirror/lang-java';
+import { go } from '@codemirror/lang-go';
+import { dracula } from '@uiw/codemirror-theme-dracula';
+
+
 
 const SolvePage = () => {
   const { id } = useParams();
@@ -130,72 +139,92 @@ const SolvePage = () => {
           <option value="java">Java</option>
           <option value="go">Go</option>
         </select>
+        <button className='hint'>Hint</button>
+        <button className='solutions'>Solutions</button>
       </div>
 
-      <div className="code-output-section">
+      <splitPane  split="vertical" minSize={100} maxSize={window.innerWidth - 200}>
+
+  <div className="left-pane" >
+    <div className="resizable-editor" >
+      <CodeMirror
+        value={code}
+        height="100%"
+        theme={dracula}
+        extensions={[          
+          language === 'cpp' ? cpp() :
+          language === 'python3' ? python() :
+          language === 'java' ? java() :
+          language === 'go' ? go() :
+          cpp()]}
+        onChange={setCode}
+      />
+    </div>
+  </div>
+
+
+<div>
+  <div className="output-box-down">
+    <button
+      className="manual-test-toggle"
+      onClick={() => setShowManualTest(!showManualTest)}
+    >
+      {showManualTest ? 'Hide Manual Test Cases' : 'Add Manual Test Cases'}
+    </button>
+  </div>
+
+  {showManualTest ? (
+    <div className="manual-test-box">
+      <div className="manual-input">
+        <h3>Manual Test Input</h3>
         <textarea
-          className="code-input"
-          placeholder="Write your code here..."
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-        ></textarea>
-
-        <button
-          className="manual-test-toggle"
-          onClick={() => setShowManualTest(!showManualTest)}
-        >
-          {showManualTest ? 'Hide Manual Test Cases' : 'Add Manual Test Cases'}
-        </button>
-
-        {showManualTest ? (
-          <div className="manual-test-box">
-            <div className="manual-input">
-              <h3>Manual Test Input</h3>
-              <textarea
-                placeholder="Enter input here..."
-                value={manualInput}
-                onChange={(e) => setManualInput(e.target.value)}
-              ></textarea>
-            </div>
-
-            <div className="manual-expected-output">
-              <h3>Expected Output</h3>
-              <textarea
-                placeholder="Enter expected output here..."
-                value={manualExpectedOutput}
-                onChange={(e) => setManualExpectedOutput(e.target.value)}
-              ></textarea>
-            </div>
-
-            <button
-              className="add-manual-button"
-              onClick={handleAddManualTestCase}
-              disabled={loading}
-            >
-              Add Test Case
-            </button>
-
-            {manualTestCases.length > 0 && (
-              <div className="manual-test-list">
-                <h4>Added Manual Test Cases:</h4>
-                <ul>
-                  {manualTestCases.map((test, index) => (
-                    <li key={index}>
-                      <strong>Input:</strong> {test.input} | <strong>Expected:</strong> {test.expectedOutput}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="output-box">
-            <h3>Output:</h3>
-            {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
-            <pre>{output}</pre>
-          </div>
-        )}
+          placeholder="Enter input here..."
+          value={manualInput}
+          onChange={(e) => setManualInput(e.target.value)}
+        />
       </div>
+
+      <div className="manual-expected-output">
+        <h3>Expected Output</h3>
+        <textarea
+          placeholder="Enter expected output here..."
+          value={manualExpectedOutput}
+          onChange={(e) => setManualExpectedOutput(e.target.value)}
+        />
+      </div>
+
+      <button
+        className="add-manual-button"
+        onClick={handleAddManualTestCase}
+        disabled={loading}
+      >
+        Add Test Case
+      </button>
+
+      {manualTestCases.length > 0 && (
+        <div className="manual-test-list">
+          <h4>Added Manual Test Cases:</h4>
+          <ul>
+            {manualTestCases.map((test, index) => (
+              <li key={index}>
+                <strong>Input:</strong> {test.input} | <strong>Expected:</strong> {test.expectedOutput}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  ) : (
+    <div className="output-box">
+      <h3>Output:</h3>
+      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+      <pre>{output}</pre>
+    </div>
+  )}
+</div>
+
+        
+      </splitPane>
 
       <button
         onClick={handleRunCode}

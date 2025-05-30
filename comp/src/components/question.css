@@ -1,234 +1,437 @@
 @font-face {
   font-family: 'Fire';
-  src: url('./fonts/HARRYP__.TTF') format('truetype'); /* Corrected path */
+  src: url('./fonts/HARRYP__.TTF') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'monop';
+  src: url('./fonts/OPTITriplettBoldAgency.otf') format('opentype'); /* Corrected path */
 
+}
+
+/* --- GLOBAL BODY AND HOUSE THEMES --- */
 body {
-  background-image: url('./images/back3.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
+}
 
-  color: black;
+body.gryffindor {
+  --bg: #583636;
+  --accent: #af6f4c;
+  --text: black;
+  --bg-2: #36181875;
+  --q-line: #44444457;
+  --button-bg: #dfbe77;
+  --search-bg: #372e29;
+  --cal-mon-back:#05050544;
+  --cal-tit:#0000002c;
+  --cal-mon-view:#dfbe77;
+  --cal-act:#dfbe77;
+  --cal-act-text:black;
+  --cal-arrow:#dfbe77;
+  --cal-big:#dfbe77;
+  --border:black;
+  background-image: url('./images/gryback3.jpg');
+  background-size: cover;
+}
+
+body.slytherin {
+  --bg: #000000;
+  --accent: #000000;
+  --button-bg: #5e8b43;
+  --text: rgb(160, 118, 118);
+  --bg-2:rgba(23, 46, 23, 0.185);
+  --q-line: #45464557;
+  --cal-mon-back:#05050544;
+  --cal-tit:#dce2dab2;
+  --cal-text:black;
+  --cal-mon-view:#dfbe77;
+  --cal-act:#3ebb2e;
+  --cal-act-text:#000000;
+  --cal-arrow:#dce2dab2;
+  --cal-big:#dce2dab2;
+  --border:black;
+  background-image: url('./images/slyBack2.jpg');
+  background-image: cover;
+}
+
+body.ravenclaw {
+  --bg: #3a5191;
+  --accent: #946b2d;
+  --text: 946b2d;
+  --bg-2: #2d739449;
+  --q-line: #2e3750a8;
+  --button-bg: #9e8f4d;
+  --search-bg: #213338b6;
+  --cal-mon-back:#3d596144;
+  --cal-tit:#00000079;
+  --cal-mon-view:#84866a;
+  --cal-act:#404785;
+  --cal-arrow:#9e8f4d;
+  --cal-big:#9e8f4d;
+  --border:rgb(146, 145, 94);
+  background-image: url('./images/ravBack.png');
+}
+
+body.hufflepuff {
+  --bg: #ecb939;
+  --accent: #af6f4c;
+  --text: black;
+  --bg-2: #372e2975;
+  --q-line: #372e29;
+  --button-bg: #ecb939;
+  --search-bg: #372e29;
+  --cal-mon-back:#05050544;
+  --cal-tit:#372e29f5;
+  --cal-mon-view:#2c2722;
+  --cal-act:#63311e;
+  --cal-arrow:#3d3631;
+  --cal-big:#3b3833;
+  --border:rgb(0, 0, 0);
+  background-image: url('./images/huffBack.png');
+  background-size: 115%;
+}
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.house-icon2 {
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 
-/* Container */
+/* Gryffindor */
+body.gryffindor .house-icon2 {
+  background-image: url('./images/Gryffindor-Logo-2.svg');
+  margin-bottom: -45px;
+
+  width: 172px;
+  height: 102px;
+}
+
+/* Slytherin */
+body.slytherin .house-icon2 {
+  background-image: url('./images/slyEmb.png');
+  margin-bottom: -45px;
+  width: 172px;
+  height: 102px;
+  transform: rotate(0deg);
+}
+
+/* Ravenclaw */
+body.ravenclaw .house-icon2 {
+  background-image: url('./images/Ravenclaw-Symbol.png');
+  width: 240px;
+  margin-right: -60px;
+  height: 140px;
+}
+
+/* Hufflepuff */
+body.hufflepuff .house-icon2 {
+  background-image: url('./images/huffEmb.png');
+  margin-bottom: -1cm;
+  width: 100px;
+  height: 100px;
+}
+
+
+
+.left-section{
+
+}
+
+.solve-button {
+  background-color: var(--button-bg);
+  color: var(--text);
+  border: 1px solid black;
+  font-family: 'Fire';
+  margin: 1px;
+  padding: 5px;
+
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.solve-button:hover {
+  background-color: #cccccc00;
+}
+
+/* --- CONTAINER --- */
 .questions-container {
+  display: flex;
+  justify-content: space-between;
   max-width: 100%;
-  margin: 8cm;
-  margin-top: 2cm;
+  margin: 60px auto;
   padding: 20px;
-  background-color: rgba(21, 70, 23, 0);
-  border: 1px solid rgba(0, 0, 0, 0);
-  color: rgb(255, 255, 255);
+  background-color: transparent;
+
+  color: var(--button-bg);
+
   font-family: 'Fire', monospace;
 }
-
-/* Remove curved overlays entirely */
 .questions-container::before,
 .questions-container::after {
   display: none;
 }
 
-/* Title */
-.questions-title {
-  color: rgb(255, 255, 255);
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-decoration: underline;
-}
-
-/* Difficulty Select */
-.difficulty-select {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
-  padding: 5px;
-  font-weight: bold;
-  font-size: 14px;
-  border: 1px solid black;
-  background-color: rgba(255, 255, 255, 0);
-  color: rgb(255, 255, 255);
-  margin-bottom: 10px;
-}
-
-/* Shards Section */
-.shards-section {
-  margin-bottom: 10px;
-}
-
-.shards-count {
-  font-size: 16px;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
-}
-
-/* Questions List */
-.questions-list {
-  margin-top: 0;
-}
-
-/* Each Question */
-.question-item {
-  background-color: rgba(189, 15, 180, 0);
-  margin-bottom: 1px;
-  
-  padding: 0px;
-}
-
-/* Question Title */
-.question-item h3 {
-  font-size: 16px;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
-  margin: 0;
-}
-
-/* Question Description */
-.question-item p {
-  font-size: 14px;
-  color: rgb(255, 255, 255);
-  margin: 0;
-}
-
-/* Line section with solve button */
-.line {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  background-color: #222;
-  padding: 5px;
-  margin-bottom: 5px;
-  border: 1px solid black;
-  color: rgb(255, 255, 255);
-}
-
-/* Line titles */
-.line h3 {
-  font-size: 16px;
-  font-weight: bold;
-  color: rgb(216, 216, 216);
-  margin: 0;
-  flex-grow: 1;
-}
-
-/* Difficulty / reward text */
-.line p {
-  font-size: 14px;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
-  margin: 0;
-}
-
-/* Solve button */
-.solve-button {
-  padding: 6px 10px;
-  background-color: #eeeeee00;
-  color: rgb(255, 255, 255);
-  border: 1px solid black;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.solve-button:hover {
-  background-color: #cccccc00;
-}
-
-/* No Questions Message */
-.no-questions {
-  font-size: 14px;
-  color: rgb(255, 255, 255);
-  text-align: center;
-}
-
-/* Main Container */
-.questions-container {
-  display: flex;
-  justify-content: space-between;
-  max-width: 100%;
-  margin: 8cm auto;
-  margin-top: 2cm;
-  padding: 20px;
-  background-color: rgba(21, 70, 23, 0);
-  border: 1px solid rgba(0, 0, 0, 0);
-  color: rgb(255, 255, 255);
-  font-family: 'Fire', monospace;
-}
-
-/* Left section: questions list */
+/* --- LEFT SECTION (QUESTIONS LIST) --- */
 .left-section {
-  font-family:'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
-  background-color: #222222cb;
+  background-color: var(--bg-2);
   padding: 10px;
   width: 65%;
   border-radius: 15px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+
 }
 
-/* Right section: calendar, daily question, stats */
+/* --- RIGHT SECTION (SIDEBAR) --- */
 .right-section {
   width: 30%;
   display: flex;
   flex-direction: column;
-  background-color: #222222e3;
+  background-color: var(--bg-2);
   padding: 25px;
   gap: 20px;
   border-radius: 15px;
   margin-right: -15px;
 }
 
-/* Calendar styling (optional enhancements) */
-.react-calendar {
-  width: 100%;
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  border: 1px solid #000000;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-/* Daily Question box */
-.daily-question {
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #444;
-}
-
-.daily-question h3 {
-  margin-top: 0;
+/* --- QUESTIONS TITLE --- */
+.questions-title {
+font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  color: #fff;
   font-size: 16px;
-  text-decoration: underline;
+  box-shadow: 3px 3px black;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-/* Question counts */
+/* --- SELECT INPUT --- */
+.difficulty-select {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 15px;
+  border: 1px solid var(--accent);
+  background-color: var(--search-bg);
+  color: grey;
+  margin: 0 0 10px 7px;
+}
+
+/* --- SEARCH INPUT --- */
+.search-input {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  background-color: var(--search-bg);
+  border: 1px solid var(--accent);
+  height: 20px;
+  color: white;
+  font-weight: bold;
+  width: 280px;
+  font-size: 15px;
+  border-radius: 15px;
+  margin-top: 90px;
+  margin-bottom: 8px;
+  padding: 5px 5px 5px 12px;
+}
+
+/* --- QUESTION LIST --- */
+.questions-list {
+  margin-top: 0;
+}
+.question-item {
+  background-color: transparent;
+  margin-bottom: 1px;
+  padding: 0;
+}
+.question-item h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+}
+.question-item p {
+  font-size: 14px;
+  color: white;
+  margin: 0;
+}
+
+/* --- LINE SECTION --- */
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--q-line);
+  padding: 5px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  color: white;
+}
+.line h3 {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  color: #d8d8d8;
+  margin: 0;
+  flex-grow: 1;
+}
+.line p {
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+}
+
+/* --- DAILY QUESTION + STATS --- */
+.daily-question,
 .question-counts {
   background-color: rgba(0, 0, 0, 0.4);
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #444;
 }
-
+.daily-question h3,
 .question-counts h3 {
   margin-top: 0;
   font-size: 16px;
-  text-decoration: underline;
 }
 
-/* Adjust title */
-.questions-title {
-  font-size: 18px;
-  font-weight: bold;
+
+
+/* --- SHARDS --- */
+.shards-section {
   margin-bottom: 10px;
-  text-decoration: underline;
+}
+.shards-count {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
 }
 
-/* Other styles unchanged */
+/* --- EMPTY STATE --- */
+.no-questions {
+  font-size: 14px;
+  color: white;
+  text-align: center;
+}
+
+/* Base Calendar Container */
+.react-calendar {
+  font-family: 'fire' !important;
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--accent);
+  color: white;
+  border: 2px solid black;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+}
+
+/* Navigation Header (Month/Year) */
+.react-calendar__navigation {
+   font-family: 'fire' !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+    border: 2px solid black !important;
+  background-color: var(--cal-mon-back);
+  border-radius: 15px;
+}
+
+.react-calendar__navigation__label {
+   font-family: 'fire' !important;
+  font-size: 20px;
+
+  color: var(--cal-big);
+  background: none;
+
+  cursor: pointer;
+}
+
+/* Navigation Arrows */
+.react-calendar__navigation__arrow {
+  font-size: 20px;
+  color: var(--cal-arrow);
+  background: none;
+  border: none;
+}
+
+/* Weekdays (Sun, Mon...) */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--cal-mon-view);
+  font-size: 12px;
+
+}
+
+/* Each Day Cell */
+.react-calendar__tile {
+  padding: 8px;
+  background-color: var(--cal-tit);
+  border-radius: 5px;
+  text-align: center;
+  border: 0.5px solid var(--border) !important;
+  color: var(--cal-text);
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.react-calendar__tile:hover {
+  background-color: rgb(134, 47, 47);
+  transform: scale(1.5);
+}
+
+/* Selected Day */
+.react-calendar__tile--active {
+  background: var(--cal-act) !important;
+  color: var(--cal-act-text) !important;
+  border: 4px solid black !important;
+  border-radius: 25px !important;
+  font-weight: bold;
+}
+
+/* Today's Date */
+.react-calendar__tile--now {
+  border: 2px solid #020202;
+  border-radius: 6px;
+}
+
+/* Disabled Days */
+.react-calendar__tile:disabled {
+  color: #272323;
+  cursor: not-allowed;
+}
+
+body.gryffindor .react-calendar {
+  background-color: #8b1717b6;
+}
+
+body.slytherin .react-calendar {
+  background-color: #137937;
+}
+
+body.ravenclaw .react-calendar {
+  background-color: #0e1a40;
+}
+
+body.hufflepuff .react-calendar {
+  background-color: #ecb939de;
+
+}
 
