@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import '../components/profile.css';
 
@@ -8,26 +8,54 @@ const ProfilePage = () => {
   const [photo, setPhoto] = useState(null);
   const [cards, setCards] = useState([]);
   const [shards, setShards] = useState(0);
+  const [house, setHouse] = useState(null);
+  const fileInputRef = useRef(null);
 
   const userId = localStorage.getItem('userId');
 
   useEffect(() => {
+    let previousHouseClass = null;
+
     const fetchUserData = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/api/users/${userId}`);
         const data = response.data;
+
         setUserData(data);
         setName(data.name);
         setPhoto(data.photo);
         setCards(data.cards);
         setShards(data.shards);
+
+        const userHouse = data.house ? data.house.toLowerCase() : null;
+        setHouse(userHouse);
+
+        ['gryffindor', 'slytherin', 'ravenclaw', 'hufflepuff'].forEach(h => {
+          document.body.classList.remove(h);
+        });
+
+        if (userHouse) {
+          document.body.classList.add(userHouse);
+          previousHouseClass = userHouse;
+          console.log('User house:', userHouse);
+        }
       } catch (err) {
         console.error('Error fetching user:', err);
       }
     };
 
     if (userId) fetchUserData();
+
+    return () => {
+      if (previousHouseClass) {
+        document.body.classList.remove(previousHouseClass);
+      }
+    };
   }, [userId]);
+
+  const handlePhotoClick = () => {
+    fileInputRef.current.click();
+  };
 
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
@@ -43,30 +71,74 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="profile-container">
-      
+    <div className='zoom-wrapper'>
+      <div className="profile-frame-wrapper">
+        <img
+          src={`/images/${house}Frame.png`}
+          alt={`${house} Crest Frame`}
+          className="container-crest-frame"
+        />
 
-      <div className="profile-info">
-        <div className="profile-photo">
-          {photo && <img src={`http://localhost:5000${photo}`} alt="Profile" />}
-        </div>
-        <div className="profile-details">
-          <h3>{name}</h3>
-          <input type="file" onChange={handlePhotoChange} />
-          <div className="shards">Shards: {shards}</div>
-        </div>
-      </div>
+        <div className="profile-container">
+          <div className="profile-info">
+            <div
+              className="profile-photo"
+              onClick={handlePhotoClick}
+              style={{ cursor: 'pointer' }}
+            >
+              {photo && (
+                <>
+                  <img
+                    src={`http://localhost:5000${photo}`}
+                    alt="Profile"
+                    className="profile-img"
+                  />
+                  <img
+                    src="/images/frame121.png"
+                    alt="Crest Frame"
+                    className="crest-frame"
+                  />
+                </>
+              )}
+            </div>
 
-      <div className="cards-section">
-        <h4>Cards Earned:</h4>
-        <ul className="card-list">
-          {cards.map((card) => (
-            <li key={card._id}>
-              <img src={card.image} alt={card.name} />
-              <span>{card.name}</span>
-            </li>
-          ))}
-        </ul>
+            {/* Hidden file input */}
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handlePhotoChange}
+              style={{ display: 'none' }}
+            />
+
+            <div className="profile-details">
+              <h3>Name : {name}</h3>
+              <h3>House : {house}</h3>
+              <h3>Wizarding Rank : NULL</h3>
+              <div className="shards">Shards: {shards}</div>
+            </div>
+          </div>
+
+          <div className="cards-section">
+            <h4>Cards Earned:</h4>
+            <ul className="card-list">
+              {cards.map((card) => (
+                <li key={card._id}>
+                  <img src={card.image} alt={card.name} />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="cards-section">
+            <h4>Cards Earned:</h4>
+            <ul className="card-list">
+              {cards.map((card) => (
+                <li key={card._id}>
+                  <img src={card.image} alt={card.name} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );
