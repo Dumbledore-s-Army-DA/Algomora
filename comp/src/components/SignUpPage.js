@@ -13,15 +13,18 @@ const SignUpPage = () => {
     e.preventDefault();
     setError(null);
     try {
-      await signup({ name, username, password });
-      navigate('/login');
+      const response=await signup({ name, username, password });
+      localStorage.setItem('userId', response.data.user._id);
+      navigate('/sorting');
     } catch (err) {
+      console.log('Signup error response:', err); // Add this
       if (err.response?.data?.error?.includes('E11000')) {
         setError('Username already exists.');
       } else {
         setError(err.response?.data?.error || 'Signup failed. Try again.');
       }
     }
+
   };
 
   return (

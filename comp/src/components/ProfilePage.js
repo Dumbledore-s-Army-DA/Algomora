@@ -123,21 +123,12 @@ const ProfilePage = () => {
             <ul className="card-list">
               {cards.map((card) => (
                 <li key={card._id}>
-                  <img src={card.image} alt={card.name} />
+                  <img src={`http://localhost:5000${card.image}`} alt={card.name} />
                 </li>
               ))}
             </ul>
           </div>
-          <div className="cards-section">
-            <h4>Cards Earned:</h4>
-            <ul className="card-list">
-              {cards.map((card) => (
-                <li key={card._id}>
-                  <img src={card.image} alt={card.name} />
-                </li>
-              ))}
-            </ul>
-          </div>
+
         </div>
       </div>
     </div>

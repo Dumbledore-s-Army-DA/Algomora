@@ -6,17 +6,26 @@ const path = require('path');
 exports.signup = async (req, res) => {
   try {
     const { name, username, password } = req.body;
+    console.log('Signup request body:', req.body);
+
     const existingUser = await User.findOne({ username });
-    if (existingUser) return res.status(400).json({ error: 'Username already exists' });
+    if (existingUser) {
+      console.log('Username already exists');
+      return res.status(400).json({ error: 'Username already exists' });
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ name, username, password: hashedPassword });
     await user.save();
-    res.status(201).json({ message: 'User created' });
+
+    res.status(201).json({ message: 'User created', user });
   } catch (err) {
+    console.error('Signup error:', err); // Log server-side error
     res.status(500).json({ error: err.message });
   }
 };
+
+
 
 exports.login = async (req, res) => {
   try {

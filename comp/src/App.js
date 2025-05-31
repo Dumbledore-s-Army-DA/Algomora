@@ -8,6 +8,7 @@ import ShardsPage from './components/ShardsPage';
 import Header from './components/Header';
 import SolvePage from './components/SolvePage';
 import Footer from './components/Footer';
+import SortingHatPage from './components/SortingHatPage';
 import './components/question.css'; // or wherever it is located
 
 
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/profile/:userId" element={<ProfilePage />} />
           <Route path="/questions" element={<QuestionsPage />} />
           <Route path="/solve/:id" element={<SolvePage />} />
+          <Route path="/sorting" element={<SortingHatPage />} />
           <Route path="/shards" element={<ShardsPage />} />
         </Routes>
       </div>
