@@ -81,6 +81,7 @@ const QuestionsPage = () => {
   };
 
   return (
+    <div className='zoomm-wrapper'>
     <div className="questions-container">
     <div className="left-section">
       <div className="top-bar">
@@ -145,6 +146,7 @@ const QuestionsPage = () => {
           <p>Hard: {questionCounts.Hard}</p>
         </div>
       </div>
+    </div>
     </div>
   );
 };

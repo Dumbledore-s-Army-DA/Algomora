@@ -9,6 +9,8 @@
   src: url('./fonts/OPTITriplettBoldAgency.otf') format('opentype'); /* Corrected path */
 
 }
+.zoomm-wrapper{
+zoom: 90%;}
 
 /* --- GLOBAL BODY AND HOUSE THEMES --- */
 body {
