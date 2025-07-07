@@ -9,6 +9,7 @@ const ProfilePage = () => {
   const [cards, setCards] = useState([]);
   const [shards, setShards] = useState(0);
   const [house, setHouse] = useState(null);
+  const [recommendedQuestions, setRecommendedQuestions] = useState([]);
   const fileInputRef = useRef(null);
 
   const userId = localStorage.getItem('userId');
@@ -37,14 +38,25 @@ const ProfilePage = () => {
         if (userHouse) {
           document.body.classList.add(userHouse);
           previousHouseClass = userHouse;
-          console.log('User house:', userHouse);
         }
       } catch (err) {
         console.error('Error fetching user:', err);
       }
     };
 
-    if (userId) fetchUserData();
+    const fetchRecommendations = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5001/recommendations/${userId}`);
+        setRecommendedQuestions(response.data.recommendations || []);
+      } catch (err) {
+        console.error('Error fetching recommendations:', err);
+      }
+    };
+
+    if (userId) {
+      fetchUserData();
+      fetchRecommendations();
+    }
 
     return () => {
       if (previousHouseClass) {
@@ -102,7 +114,6 @@ const ProfilePage = () => {
               )}
             </div>
 
-            {/* Hidden file input */}
             <input
               type="file"
               ref={fileInputRef}
@@ -129,6 +140,16 @@ const ProfilePage = () => {
             </ul>
           </div>
 
+          <div className="recommendations-section">
+            <h4>🧠 Recommended Questions:</h4>
+            <ul className="recommendation-list">
+              {recommendedQuestions.map((question, idx) => (
+                <li key={idx}>
+                  <strong>{question.problem_id}</strong> – {question.title || 'Untitled'}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

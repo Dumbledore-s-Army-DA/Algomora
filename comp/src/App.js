@@ -10,7 +10,7 @@ import SolvePage from './components/SolvePage';
 import Footer from './components/Footer';
 import SortingHatPage from './components/SortingHatPage';
 import './components/question.css'; // or wherever it is located
-
+import TopicForm from './components/TopicForm';
 
 const App = () => {
   return (
@@ -25,6 +25,7 @@ const App = () => {
           <Route path="/solve/:id" element={<SolvePage />} />
           <Route path="/sorting" element={<SortingHatPage />} />
           <Route path="/shards" element={<ShardsPage />} />
+          <Route path="/topicform" element={<TopicForm />} />
         </Routes>
       </div>
 

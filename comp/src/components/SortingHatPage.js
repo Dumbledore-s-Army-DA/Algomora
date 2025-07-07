@@ -94,7 +94,7 @@ const SortingHatPage = () => {
         axios.patch(`http://localhost:5000/api/users/${userId}`, { house: sortedHouse })
           .then(() => {
             speak(`You belong in... ${sortedHouse.charAt(0).toUpperCase() + sortedHouse.slice(1)}!`);
-            setTimeout(() => navigate('/profile'), 4000);
+            setTimeout(() => navigate('/topicform'), 4000);
           })
           .catch((err) => console.error("Failed to update house:", err));
       }

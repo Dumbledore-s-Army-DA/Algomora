@@ -6,6 +6,7 @@ const path = require('path');
 
 const questionRoutes = require('../routes/questionRoutes');
 const userRoutes = require('../routes/authRoutes');
+const userProfileRoutes = require('../routes/userProfileRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,10 +15,13 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/userProfile', userProfileRoutes);
 
 // Routes
 app.use('/api/questions', questionRoutes);
 app.use('/api/users', userRoutes);
+
+mongoose.set('debug', true);
 
 // DB connection
 mongoose.connect(process.env.MONGO_URI)
