@@ -4,12 +4,18 @@ from pymongo import MongoClient
 import joblib
 import pandas as pd
 from bson import ObjectId
+import os
+from dotenv import load_dotenv
+import pymongo
+
+load_dotenv()
+MONGO_URID = os.getenv("MONGO_URID")
 
 app = Flask(__name__)
 CORS(app)
 
 # MongoDB Atlas Connection
-client = MongoClient("mongodb+srv://vazdeanne5:vazdeanne121@unknowndb.2mgnf.mongodb.net/?retryWrites=true&w=majority&appName=unknownDB")
+client = pymongo.MongoClient("MONGO_URI")
 db = client['dBase']
 profiles = db['user_profiles']
 
