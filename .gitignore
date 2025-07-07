@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+#*.pkl
+#*.csv
+*.ipynb_checkpoints
+algenv/
+.env
+
+# Node
+node_modules/
+build/
+dist/
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
