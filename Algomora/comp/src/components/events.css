@@ -1,0 +1,371 @@
+@font-face {
+  font-family: 'Fire';
+  src: url('./fonts/HARRYP__.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'monop';
+  src: url('./fonts/OPTITriplettBoldAgency.otf') format('opentype');
+}
+
+.zoomm-wrapper {
+  zoom: 90%;
+}
+
+/* --- GLOBAL BODY AND HOUSE THEMES --- */
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body.gryffindor {
+  --bg: #583636;
+  --accent: #af6f4c;
+  --text: black;
+  --bg-2: #36181875;
+  --q-line: #44444457;
+  --button-bg: #dfbe77;
+  --search-bg: #372e29;
+  --cal-mon-back: #05050544;
+  --cal-tit: #0000002c;
+  --cal-mon-view: #dfbe77;
+  --cal-act: #dfbe77;
+  --cal-act-text: black;
+  --cal-arrow: #dfbe77;
+  --cal-big: #dfbe77;
+  --border: black;
+  background-image: url('./images/gryback3.jpg');
+}
+
+body.slytherin {
+  --bg: #000000;
+  --accent: #000000;
+  --button-bg: #5e8b43;
+  --text: rgb(160, 118, 118);
+  --bg-2: rgba(23, 46, 23, 0.185);
+  --q-line: #45464557;
+  --cal-mon-back: #05050544;
+  --cal-tit: #dce2dab2;
+  --cal-text: black;
+  --cal-mon-view: #dfbe77;
+  --cal-act: #3ebb2e;
+  --cal-act-text: #000000;
+  --cal-arrow: #dce2dab2;
+  --cal-big: #dce2dab2;
+  --border: black;
+  background-image: url('./images/slyBack2.jpg');
+}
+
+body.ravenclaw {
+  --bg: #3a5191;
+  --accent: #946b2d;
+  --text: 946b2d;
+  --bg-2: #2d739449;
+  --q-line: #2e3750a8;
+  --button-bg: #9e8f4d;
+  --search-bg: #213338b6;
+  --cal-mon-back: #3d596144;
+  --cal-tit: #00000079;
+  --cal-mon-view: #84866a;
+  --cal-act: #404785;
+  --cal-arrow: #9e8f4d;
+  --cal-big: #9e8f4d;
+  --border: rgb(146, 145, 94);
+  background-image: url('./images/ravBack.png');
+}
+
+body.hufflepuff {
+  --bg: #ecb939;
+  --accent: #af6f4c;
+  --text: black;
+  --bg-2: #372e2975;
+  --q-line: #372e29;
+  --button-bg: #ecb939;
+  --search-bg: #372e29;
+  --cal-mon-back: #05050544;
+  --cal-tit: #372e29f5;
+  --cal-mon-view: #2c2722;
+  --cal-act: #63311e;
+  --cal-arrow: #3d3631;
+  --cal-big: #3b3833;
+  --border: rgb(0, 0, 0);
+  background-image: url('./images/huffBack.png');
+  background-size: 115%;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.house-icon2 {
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body.gryffindor .house-icon2 {
+  background-image: url('./images/Gryffindor-Logo-2.svg');
+  margin-bottom: -45px;
+  width: 172px;
+  height: 102px;
+}
+
+body.slytherin .house-icon2 {
+  background-image: url('./images/slyEmb.png');
+  margin-bottom: -45px;
+  width: 172px;
+  height: 102px;
+}
+
+body.ravenclaw .house-icon2 {
+  background-image: url('./images/Ravenclaw-Symbol.png');
+  width: 240px;
+  margin-right: -60px;
+  height: 140px;
+}
+
+body.hufflepuff .house-icon2 {
+  background-image: url('./images/huffEmb.png');
+  margin-bottom: -1cm;
+  width: 100px;
+  height: 100px;
+}
+
+.solve-button {
+  background-color: var(--button-bg);
+  color: var(--text);
+  border: 1px solid black;
+  font-family: 'Fire';
+  margin: 1px;
+  padding: 5px;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.solve-button:hover {
+  background-color: #cccccc00;
+}
+
+/* --- CONTAINER --- */
+.events-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+  margin: 60px auto;
+  padding: 20px;
+  background-color: transparent;
+  color: var(--button-bg);
+  font-family: 'Fire', monospace;
+}
+
+.events-container::before,
+.events-container::after {
+  display: none;
+}
+
+/* --- LEFT SECTION (EVENTS LIST) --- */
+.left-section {
+  background-color: var(--bg-2);
+  padding: 10px;
+  width: 65%;
+  border-radius: 15px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+}
+
+/* --- RIGHT SECTION (SIDEBAR) --- */
+.right-section {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-2);
+  padding: 25px;
+  gap: 20px;
+  border-radius: 15px;
+  margin-right: -15px;
+}
+
+/* --- EVENTS TITLE --- */
+.events-title {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: 3px 3px black;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* --- EVENT LIST ITEM --- */
+.event-item {
+  background-color: transparent;
+  margin-bottom: 1px;
+  padding: 0;
+}
+
+.event-item h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+}
+
+.event-item p {
+  font-size: 14px;
+  color: white;
+  margin: 0;
+}
+
+/* --- LINE SECTION --- */
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--q-line);
+  padding: 5px;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  color: white;
+}
+
+.line h3 {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  color: #d8d8d8;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.line p {
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+}
+
+/* --- DAILY EVENT --- */
+.daily-event {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #444;
+}
+
+.daily-event h3 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+/* --- EMPTY STATE --- */
+.no-events {
+  font-size: 14px;
+  color: white;
+  text-align: center;
+}
+
+/* --- CALENDAR --- */
+.react-calendar {
+  font-family: 'fire' !important;
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--accent);
+  color: white;
+  border: 2px solid black;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.react-calendar__navigation {
+  font-family: 'fire' !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 2px solid black !important;
+  background-color: var(--cal-mon-back);
+  border-radius: 15px;
+}
+
+.react-calendar__navigation__label {
+  font-family: 'fire' !important;
+  font-size: 20px;
+  color: var(--cal-big);
+  background: none;
+  cursor: pointer;
+}
+
+.react-calendar__navigation__arrow {
+  font-size: 20px;
+  color: var(--cal-arrow);
+  background: none;
+  border: none;
+}
+
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--cal-mon-view);
+  font-size: 12px;
+}
+
+.react-calendar__tile {
+  padding: 8px;
+  background-color: var(--cal-tit);
+  border-radius: 5px;
+  text-align: center;
+  border: 0.5px solid var(--border) !important;
+  color: var(--cal-text);
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.react-calendar__tile:hover {
+  background-color: rgb(134, 47, 47);
+  transform: scale(1.5);
+}
+
+.react-calendar__tile--active {
+  background: var(--cal-act) !important;
+  color: var(--cal-act-text) !important;
+  border: 4px solid black !important;
+  border-radius: 25px !important;
+  font-weight: bold;
+}
+
+.react-calendar__tile--now {
+  border: 2px solid #020202;
+  border-radius: 6px;
+}
+
+.react-calendar__tile:disabled {
+  color: #272323;
+  cursor: not-allowed;
+}
+
+body.gryffindor .react-calendar {
+  background-color: #8b1717b6;
+}
+
+body.slytherin .react-calendar {
+  background-color: #137937;
+}
+
+body.ravenclaw .react-calendar {
+  background-color: #0e1a40;
+}
+
+body.hufflepuff .react-calendar {
+  background-color: #ecb939de;
+}

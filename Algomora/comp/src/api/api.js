@@ -11,7 +11,7 @@ export const signup = (userData) =>
 export const getUserData = (userId) =>
   axios.get(`${API_URL}/users/${userId}`);
 
-export const getQuestions = (difficulty) =>
+export const getQuestions = (difficulty) =>ge
   axios.get(`${API_URL}/questions/difficulty/${difficulty}`);
 
 export const getQuestionById = (id) =>
@@ -19,3 +19,6 @@ export const getQuestionById = (id) =>
 
 export const getShards = (userId) =>
   axios.get(`${API_URL}/shards/${userId}`);
+
+export const getEvents = () =>
+  axios.get(`${API_URL}/events`);

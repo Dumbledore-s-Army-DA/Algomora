@@ -9,8 +9,10 @@ import Header from './components/Header';
 import SolvePage from './components/SolvePage';
 import Footer from './components/Footer';
 import SortingHatPage from './components/SortingHatPage';
-import './components/question.css'; // or wherever it is located
 import TopicForm from './components/TopicForm';
+import EventsPage from './components/EventsPage'; // ✅ Add this import!
+import './components/question.css'; // or wherever it is located
+// ✅ You can import your Events CSS directly inside EventsPage instead, if needed
 
 const App = () => {
   return (
@@ -26,9 +28,10 @@ const App = () => {
           <Route path="/sorting" element={<SortingHatPage />} />
           <Route path="/shards" element={<ShardsPage />} />
           <Route path="/topicform" element={<TopicForm />} />
+          <Route path="/events" element={<EventsPage />} /> {/* ✅ New Events route */}
         </Routes>
       </div>
-
+      <Footer />
     </Router>
   );
 };
