@@ -28,7 +28,7 @@ const App = () => {
           <Route path="/sorting" element={<SortingHatPage />} />
           <Route path="/shards" element={<ShardsPage />} />
           <Route path="/topicform" element={<TopicForm />} />
-          <Route path="/events" element={<EventsPage />} /> {/* ✅ New Events route */}
+          <Route path="/events" element={<EventsPage />} /> 
         </Routes>
       </div>
       <Footer />
