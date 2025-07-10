@@ -45,13 +45,16 @@ const ProfilePage = () => {
     };
 
     const fetchRecommendations = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5001/recommendations/${userId}`);
-        setRecommendedQuestions(response.data.recommendations || []);
-      } catch (err) {
-        console.error('Error fetching recommendations:', err);
-      }
-    };
+  try {
+    const response = await axios.post("http://localhost:5001/recommend", {
+      user_id: userId,
+    });
+    setRecommendedQuestions(response.data.recommendations || []);
+    console.log("✅ Got recommendations:", response.data.recommendations);
+  } catch (err) {
+    console.error("❌ Error fetching recommendations:", err);
+  }
+};
 
     if (userId) {
       fetchUserData();
@@ -145,7 +148,7 @@ const ProfilePage = () => {
             <ul className="recommendation-list">
               {recommendedQuestions.map((question, idx) => (
                 <li key={idx}>
-                  <strong>{question.problem_id}</strong> – {question.title || 'Untitled'}
+                  <strong>{question.question_id}</strong> – Score: {question.score}
                 </li>
               ))}
             </ul>
