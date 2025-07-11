@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import './topicform.css'; // Make sure path is correct
 const topics = [
-  "arrays", "strings", "linked_lists", "stacks_queues",
-  "trees", "graphs", "dp", "recursion",
-  "sorting_searching", "math"
+  "Arrays", "Strings", "Linked Lists", "Stacks Queues",
+  "Trees", "Graphs", "Dynamic Programming", "Recursion",
+  "Sorting & Searching", "Math"
 ];
 
 const TopicForm = () => {
@@ -56,27 +56,34 @@ const TopicForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 max-w-md mx-auto bg-white rounded shadow">
-      <h2 className="text-xl font-bold mb-4">Rate Your Topic Proficiency</h2>
-      {topics.map((topic) => (
-        <div key={topic} className="mb-3">
-          <label className="block capitalize">{topic.replace('_', ' ')}</label>
-          <select
-            required
-            onChange={(e) => handleChange(topic, e.target.value)}
-            className="w-full border px-2 py-1 rounded"
-          >
-            <option value="">Select rating</option>
-            <option value="1">1 - Noob</option>
-            <option value="2">2 - Intermediate</option>
-            <option value="3">3 - Pro</option>
-          </select>
-        </div>
-      ))}
-      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-        Submit
-      </button>
-    </form>
+    
+
+<form onSubmit={handleSubmit} className="topic-form-container">
+  <h2>Rate Your Topic Proficiency</h2>
+
+  {topics.map((topic) => (
+    <div key={topic} className="topic-block">
+      <label className="topic-label">{topic.replace('_', ' ')}</label>
+      <div className="radio-group">
+        {[1, 2, 3].map((level) => (
+          <label key={level} className="radio-option">
+            <input
+              type="radio"
+              name={topic}
+              value={level}
+              required
+              onChange={(e) => handleChange(topic, e.target.value)}
+            />
+            {level === 1 ? '📖 Beginner' : level === 2 ? '🧠 Intermediate' : '🧙 Advanced'}
+          </label>
+        ))}
+      </div>
+    </div>
+  ))}
+
+  <button type="submit">Submit ✨</button>
+</form>
+
   );
 };
 
