@@ -7,6 +7,7 @@ const path = require('path');
 const questionRoutes = require('../routes/questionRoutes');
 const userRoutes = require('../routes/authRoutes');
 const userProfileRoutes = require('../routes/userProfileRoutes');
+const eventRoutes = require('../routes/eventRoutes'); // ✅ NEW: add this
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -20,6 +21,7 @@ app.use('/api/userProfile', userProfileRoutes);
 // Routes
 app.use('/api/questions', questionRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/events', eventRoutes); // ✅ NEW: add this line
 
 mongoose.set('debug', true);
 

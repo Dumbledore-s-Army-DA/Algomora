@@ -19,3 +19,10 @@ export const getQuestionById = (id) =>
 
 export const getShards = (userId) =>
   axios.get(`${API_URL}/shards/${userId}`);
+
+// ✅ NEW: Events API
+export const getEvents = () =>
+  axios.get(`${API_URL}/events`);
+
+export const getEventById = (eventId) =>
+  axios.get(`${API_URL}/events/${eventId}`);

@@ -1,47 +1,37 @@
+/* Make sure the footer always aligns at the bottom */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Flex layout to push footer down */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 /* Footer styles */
 footer {
-    background-color: #9737d651;
-    color: #000000;
-    padding: 20px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 400;
+  margin-top: auto;
+  background-color: #00000051;
+  color: #000000;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Footer content */
+.footer-content p {
+  margin: 0;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  footer {
+    font-size: 12px;
+    padding: 15px;
   }
-  
-  footer a {
-    color: #000000;
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 16px;
-  }
-  
-  footer a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Add social media icons */
-  footer .social-icons {
-    margin-top: 10px;
-  }
-  
-  footer .social-icons a {
-    margin: 0 15px;
-    font-size: 20px;
-  }
-  
-  /* Responsive for smaller screens */
-  @media (max-width: 768px) {
-    footer {
-      font-size: 12px;
-    }
-  
-    footer .social-icons {
-      margin-top: 15px;
-    }
-  
-    footer .social-icons a {
-      font-size: 18px;
-      margin: 0 10px;
-    }
-  }
-  
+}
