@@ -1,0 +1,64 @@
+.leaderboard-container {
+  max-width: 900px;
+  margin: 100px auto 60px;
+  padding: 30px;
+  background-color: var(--bg-2);
+  border: 2px solid var(--accent);
+  border-radius: 15px;
+  font-family: 'Fire', serif;
+  color: var(--text);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+h2{
+    font-size: 36px;
+    color: rgb(10, 2, 20);
+}
+/* Heading */
+.leaderboard-title {
+  text-align: center;
+  font-size: 40px !important;
+  color: var(--accent);
+  margin-bottom: 20px;
+  text-shadow: 2px 2px black;
+  font-family: 'Fire', serif;
+}
+
+/* Table */
+table {
+  margin: 0 auto;
+  width: 90%;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1.5px solid var(--border);
+}
+
+/* Table Headings with Hogwarts font */
+th {
+  background-color: var(--accent);
+  color: black;
+  font-size: 32px !important;
+  font-family: 'Fire', serif;
+  padding: 12px;
+  border: 1px solid var(--border);
+}
+
+/* Table body */
+td {
+  padding: 10px 15px;
+  text-align: center;
+  font-size: 24px;
+  color: white;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.01);
+  transition: 0.2s;
+}

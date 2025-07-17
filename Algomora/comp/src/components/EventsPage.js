@@ -54,7 +54,7 @@ const EventsPage = () => {
       <div className="events-container">
         <div className="left-section">
           <div className="top-bar">
-            <h2 className="events-title">Competitions & Events</h2>
+            <h2 className="events-title">Events</h2>
             <span className="house-icon2" aria-label={`${userHouse} emblem`} />
           </div>
           {events.length === 0 ? (
@@ -65,7 +65,7 @@ const EventsPage = () => {
                 <div className="line">
                   <h3>{ev.name}</h3>
                   <p>{new Date(ev.date).toDateString()}</p>
-                  <p>{ev.shardReward} 𖢻</p>
+                  <p>{ev.shardReward}   </p>
                   <Link to={`/participate/${ev._id}`} className="solve-button">Participate</Link>
                 </div>
               </div>

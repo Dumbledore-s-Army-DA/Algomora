@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signup } from '../api/api'; // make sure path is correct
-
+import './signup.css';
 const SignUpPage = () => {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');

@@ -139,7 +139,7 @@ const SolvePage = () => {
           <option value="java">Java</option>
           <option value="go">Go</option>
         </select>
-        <button className='hint'>Hint</button>
+        
         <button className='solutions'>Solutions</button>
       </div>
 
@@ -164,14 +164,14 @@ const SolvePage = () => {
 
 
 <div>
-  <div className="output-box-down">
-    <button
-      className="manual-test-toggle"
-      onClick={() => setShowManualTest(!showManualTest)}
-    >
-      {showManualTest ? 'Hide Manual Test Cases' : 'Add Manual Test Cases'}
-    </button>
-  </div>
+  <button
+        onClick={handleRunCode}
+        className="run-button"
+        disabled={loading}
+      >
+        {loading ? 'Running...' : '▶ Run Code'}
+      </button>
+  
 
   {showManualTest ? (
     <div className="manual-test-box">
@@ -226,13 +226,14 @@ const SolvePage = () => {
         
       </splitPane>
 
-      <button
-        onClick={handleRunCode}
-        className="run-button"
-        disabled={loading}
-      >
-        {loading ? 'Running...' : '▶ Run Code'}
-      </button>
+      <div className="output-box-down">
+    <button
+      className="manual-test-toggle"
+      onClick={() => setShowManualTest(!showManualTest)}
+    >
+      {showManualTest ? 'Hide Manual Test Cases' : 'Add Manual Test Cases'}
+    </button>
+  </div>
     </div>
   </div>
 </div>

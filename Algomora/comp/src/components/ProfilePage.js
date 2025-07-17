@@ -84,6 +84,7 @@ const ProfilePage = () => {
         .catch((err) => console.error('Photo upload error:', err));
     }
   };
+const uniqueCards = Array.from(new Map(cards.map(card => [card._id, card])).values());
 
   return (
     <div className='zoom-wrapper'>
@@ -127,8 +128,9 @@ const ProfilePage = () => {
             <div className="profile-details">
               <h3>Name : {name}</h3>
               <h3>House : {house}</h3>
-              <h3>Wizarding Rank : NULL</h3>
-              <div className="shards">Shards: {shards}</div>
+              <h3>Wizarding Rank : Null</h3>
+              <div className="shards">
+                Shards: {shards}</div>
             </div>
           </div>
 
@@ -137,7 +139,8 @@ const ProfilePage = () => {
             <ul className="card-list">
               {cards.map((card) => (
                 <li key={card._id}>
-                  <img src={`http://localhost:5000${card.image}`} alt={card.name} />
+                  <img src={`{card.image}`} alt={card.name} />
+                  
                 </li>
               ))}
             </ul>
@@ -148,7 +151,7 @@ const ProfilePage = () => {
             <ul className="recommendation-list">
               {recommendedQuestions.map((question, idx) => (
                 <li key={idx}>
-                  <strong>{question.question_id}</strong> – Score: {question.score}
+                  <strong>{question.question_id}</strong>
                 </li>
               ))}
             </ul>

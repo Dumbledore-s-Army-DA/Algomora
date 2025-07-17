@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Cinzel', serif;
-  background: url('./images/1995_welcoming_feast_2.jpg') no-repeat center center fixed;
+  background: url('./images/hogwarts.jpg') no-repeat center center fixed;
   background-size: cover;
   color: #f9f7f1;
 }
@@ -84,4 +84,34 @@ body {
   0% { opacity: 0.6; }
   50% { opacity: 1; }
   100% { opacity: 0.6; }
+}
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay h2{
+  font-size: 28px;
+  color: rgb(60, 117, 190);
+}
+.modal-content {
+  background: #111;
+  color: rgb(60, 117, 190);
+  border: 3px solid rgb(60, 117, 190);
+  padding: 40px;
+  border-radius: 15px;
+  font-family: 'Fire';
+  text-align: center;
+  box-shadow: 0 0 30px rgb(60, 117, 190);
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
 }

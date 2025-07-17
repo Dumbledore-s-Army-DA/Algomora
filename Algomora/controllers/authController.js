@@ -83,3 +83,23 @@ exports.uploadPhoto = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.updateUserHouse = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { house } = req.body;
+
+    const user = await User.findByIdAndUpdate(
+      id,
+      { house },
+      { new: true }
+    );
+
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    res.json(user);
+  } catch (err) {
+    console.error('Error updating house:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+};

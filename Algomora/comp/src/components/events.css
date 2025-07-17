@@ -146,7 +146,7 @@ body.hufflepuff .house-icon2 {
   margin: 1px;
   padding: 5px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
   border-radius: 15px;
   cursor: pointer;
 }
@@ -209,16 +209,23 @@ body.hufflepuff .house-icon2 {
   margin-bottom: 1px;
   padding: 0;
 }
+.event-item h2 {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+}
+
 
 .event-item h3 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: white;
   margin: 0;
 }
 
 .event-item p {
-  font-size: 14px;
+  font-size: 18px;
   color: white;
   margin: 0;
 }
@@ -238,7 +245,7 @@ body.hufflepuff .house-icon2 {
 
 .line h3 {
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: #d8d8d8;
   margin: 0;
@@ -246,7 +253,7 @@ body.hufflepuff .house-icon2 {
 }
 
 .line p {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   color: white;
   margin: 0;
@@ -262,12 +269,12 @@ body.hufflepuff .house-icon2 {
 
 .daily-event h3 {
   margin-top: 0;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 /* --- EMPTY STATE --- */
 .no-events {
-  font-size: 14px;
+  font-size: 20px;
   color: white;
   text-align: center;
 }

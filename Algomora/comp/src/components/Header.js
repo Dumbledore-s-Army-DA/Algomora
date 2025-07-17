@@ -2,11 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../components/header.css';
 import { getUserData } from '../api/api';
+import { useNavigate } from 'react-router-dom';
+
 
 const Header = () => {
   const [photo, setPhoto] = useState(null);
   const [house, setHouse] = useState(null);
   const userId = localStorage.getItem('userId');
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+  localStorage.removeItem('userId');
+  navigate('/login');
+};
 
   useEffect(() => {
     if (!userId) return;
@@ -48,22 +56,34 @@ const Header = () => {
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/signup">Sign Up</Link></li>
             <li><Link to="/questions">Questions</Link></li>
-            <li><Link to="/shards">Shards</Link></li>
+            
+            <li><Link to= "/events">Events</Link></li>
+            <li><Link to= "/leaderboard">Leaderboard</Link></li>
           </ul>
           <ul className="right">
-            {userId && photo && (
-              <li className="header-user-info">
-                <Link to={`/profile/${userId}`} className="header-profile-link">
-                  <span className="house-icon" aria-label={`${house} emblem`} />
-                  <img
-                    src={`http://localhost:5000${photo}`}
-                    alt="Profile"
-                    className="header-profile-photo"
-                  />
-                </Link>
-              </li>
-            )}
-          </ul>
+  {userId && (
+    <>
+      <li className="header-user-info">
+        <Link to={`/profile/${userId}`} className="header-profile-link">
+          <span className="house-icon" aria-label={`${house} emblem`} />
+          {photo && (
+            <img
+              src={`http://localhost:5000${photo}`}
+              alt="Profile"
+              className="header-profile-photo"
+            />
+          )}
+        </Link>
+      </li>
+      <li>
+        <button className="logout-button" onClick={handleLogout}>
+          Logout
+        </button>
+      </li>
+    </>
+  )}
+</ul>
+
         </nav>
       </header>
       <div className="header-fade" />

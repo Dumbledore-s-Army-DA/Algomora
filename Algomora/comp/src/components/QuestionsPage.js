@@ -140,7 +140,7 @@ const QuestionsPage = () => {
         )}
 
         <div className="question-counts">
-          <h3>Question Stats</h3>
+          <p>Question Stats</p>
           <p>Easy: {questionCounts.Easy}</p>
           <p>Medium: {questionCounts.Medium}</p>
           <p>Hard: {questionCounts.Hard}</p>

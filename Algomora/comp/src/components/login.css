@@ -1,34 +1,78 @@
-/* Login Page */
-.login-container{
-  margin-top: 5cm;
+@font-face {
+  font-family: 'Fire';
+  src: url('./fonts/HARRYP__.TTF') format('truetype');
 }
 
-.login-form {
-    display: flex;
-    flex-direction: column;
-    margin-top: 2cm;
-    gap: 20px;
-  }
-  
-  .login-form input {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-  }
-  
-  .login-form button {
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .login-form button:hover {
-    background-color: #555;
-  }
-  
+.login-container {
+  font-family: 'Fire', serif;
+  background: none; /* remove background color */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f4f4f4;
+  padding: 40px;
+}
+
+.login-container form {
+  background-color: rgba(18, 28, 63, 0.8); /* slight translucent */
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(136, 173, 255, 0.4);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  border: 2px solid #7e9cd9;
+}
+
+.login-container h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #cdd5f7;
+  text-shadow: 2px 2px #000;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 14px 0;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #99aadd;
+  background-color: rgba(255, 255, 255, 0.85); /* light without overpowering bg */
+  color: #1d1d33;
+  font-family: monospace;
+  box-sizing: border-box;
+}
+
+.login-container input::placeholder {
+  color: #667199;
+  font-style: italic;
+}
+
+.login-container button {
+  background-color: #5c7aff;
+  color: white;
+  font-family: 'Fire';
+  font-size: 18px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  margin-top: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #aac4ff;
+  transition: 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #4b63c4;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #dce4ff;
+}
+
+.login-container p {
+  font-family: monospace;
+  font-size: 14px;
+  color: #ff6b6b;
+  margin-top: 10px;
+}

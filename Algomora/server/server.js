@@ -7,8 +7,8 @@ const path = require('path');
 const questionRoutes = require('../routes/questionRoutes');
 const userRoutes = require('../routes/authRoutes');
 const userProfileRoutes = require('../routes/userProfileRoutes');
-const eventRoutes = require('../routes/eventRoutes'); // ✅ NEW: add this
-
+const events = require('../routes/events'); // ✅ NEW: add this
+const leaderboardRoutes = require('../routes/leaderboard');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -21,7 +21,10 @@ app.use('/api/userProfile', userProfileRoutes);
 // Routes
 app.use('/api/questions', questionRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/events', eventRoutes); // ✅ NEW: add this line
+app.use('/api/events', events); // ✅ NEW: add this line
+app.use('/api/leaderboard', leaderboardRoutes);
+
+
 
 mongoose.set('debug', true);
 

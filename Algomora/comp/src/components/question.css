@@ -145,11 +145,6 @@ body.hufflepuff .house-icon2 {
 }
 
 
-
-.left-section{
-
-}
-
 .solve-button {
   background-color: var(--button-bg);
   color: var(--text);
@@ -166,6 +161,24 @@ body.hufflepuff .house-icon2 {
 .solve-button:hover {
   background-color: #cccccc00;
 }
+
+.question-counts {
+  background-color: rgba(0, 0, 0, 1); /* Almost fully opaque */
+  padding: 20px;
+  border-radius: 15px;
+  color: #aa842d;
+  font-family: 'Fire', serif;
+  font-size: 20px; /* Increase font size */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  margin-top: 20px;
+  text-align: left;
+}
+
+.question-counts h3, p {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
 
 /* --- CONTAINER --- */
 .questions-container {
@@ -192,7 +205,7 @@ body.hufflepuff .house-icon2 {
   width: 65%;
   border-radius: 15px;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
-
+  color: white;
 }
 
 /* --- RIGHT SECTION (SIDEBAR) --- */

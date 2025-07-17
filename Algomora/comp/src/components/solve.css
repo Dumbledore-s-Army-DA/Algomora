@@ -145,6 +145,12 @@ select {
 .options-bar{
   margin-top: -12px;
   margin-bottom: 5px;
+  
+  font-family: "Fire";
+  font-weight: bold;
+  font-size: 18px; /* 🔧 Increase this value to make the font bigger */
+ 
+  padding: 6px 10px; 
 }
 
 /* Manual inputs */
@@ -224,7 +230,7 @@ select {
   color: #e9dd72;
   text-decoration: none;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 22px;
   cursor: pointer;
   border: solid 2px #e9dd72;
 
@@ -258,12 +264,12 @@ select {
   color: #e9dd72;
   text-decoration: none;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 23px;
   cursor: pointer;
   border: solid 2px #e9dd72;
 }
 .run-button{
-  background-color:rgb(40, 177, 70);
+  background-color:rgb(45, 126, 63);
   font-family: "Fire";
   margin: 5px;
   border: 2px solid black;
@@ -272,23 +278,21 @@ select {
   text-shadow: 2px 2px black;
   text-decoration: none;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 27px;
   cursor: pointer;
 
 }
 
 .run-button:hover,
 .manual-test-toggle:hover,
-.add-manual-button:hover, {
-  
-}
+
 
 /* Select */
 .options-bar select {
   border: 1px solid black;
   font-family: "Fire";
   font-weight: bold;
-  font-size: 15px;
+  font-size: 27px;
   border-radius: 5px;
   border: 2px solid rgb(0, 0, 0);  
   
@@ -304,4 +308,23 @@ select {
   .right-side {
     width: 100%;
   }
+}
+.left-side,
+.right-side {
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.left-side p{
+  font-size: 16px; /* increase from 13px or less */
+  line-height: 1.6;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+.left-side h1 {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  font-size: 20px; /* was 26px */
+  font-weight: bold;
+  margin-bottom: 10px;
 }

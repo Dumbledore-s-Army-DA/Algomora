@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './sorting.css';
@@ -38,11 +37,10 @@ const SortingHatPage = () => {
   const [step, setStep] = useState(0);
   const [houseTally, setHouseTally] = useState({});
   const [showReaction, setShowReaction] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [showHouseModal, setShowHouseModal] = useState(false);
+  const [finalHouse, setFinalHouse] = useState('');
   const navigate = useNavigate();
-  const [userData,setUserData] = useState();
-  const [name, setName] = useState('');
-    const [photo, setPhoto] = useState(null);
-
   const userId = localStorage.getItem('userId');
 
   const speak = (text) => {
@@ -50,26 +48,17 @@ const SortingHatPage = () => {
     speechSynthesis.speak(utterance);
   };
 
-    useEffect(() => {
-
+  useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/api/users/${userId}`);
-        const data = response.data;
-
-        setUserData(data);
-        setName(data.name);
-        setPhoto(data.photo);
-
-
+        setUserData(response.data);
       } catch (err) {
         console.error('Error fetching user:', err);
       }
     };
 
     if (userId) fetchUserData();
-
-
   }, [userId]);
 
   const handleAnswer = (house) => {
@@ -84,17 +73,22 @@ const SortingHatPage = () => {
 
     setTimeout(() => {
       setShowReaction(false);
-      if (step + 1 < questions.length) {
-        setStep(step + 1);
+      const nextStep = step + 1;
+      if (nextStep < questions.length) {
+        setStep(nextStep);
       } else {
-        // Final house calculation
         const sortedHouse = Object.entries(updatedTally).sort((a, b) => b[1] - a[1])[0][0];
+        const houseName = sortedHouse.charAt(0).toUpperCase() + sortedHouse.slice(1);
 
-        // Save to backend
         axios.patch(`http://localhost:5000/api/users/${userId}`, { house: sortedHouse })
           .then(() => {
-            speak(`You belong in... ${sortedHouse.charAt(0).toUpperCase() + sortedHouse.slice(1)}!`);
-            setTimeout(() => navigate('/topicform'), 4000);
+            setFinalHouse(houseName);
+            setShowHouseModal(true);
+            speak(`You belong in... ${houseName}!`);
+            setTimeout(() => {
+              setShowHouseModal(false);
+              navigate('/topicform');
+            }, 4000);
           })
           .catch((err) => console.error("Failed to update house:", err));
       }
@@ -102,37 +96,18 @@ const SortingHatPage = () => {
   };
 
   if (!userData) {
-  return (
-    <div className="sorting-hat-container">
-      <p>Loading user info...</p>
-    </div>
-  );
-}
-
-return (
-  <div className="sorting-hat-container">
-    <h2>The Sorting Hat</h2>
-    <h2>{userData.name}</h2>
-    {showReaction ? (
-      <p><i>The hat is thinking...</i></p>
-    ) : (
-      <>
-        <p>{questions[step].q}</p>
-        <div className="answers">
-          {questions[step].answers.map((a, idx) => (
-            <button key={idx} onClick={() => handleAnswer(a.house)}>{a.text}</button>
-          ))}
-        </div>
-      </>
-    )}
-  </div>
-);
-
+    return (
+      <div className="sorting-hat-container">
+        <p>Loading user info...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="sorting-hat-container">
       <h2>The Sorting Hat</h2>
       <h2>{userData.name}</h2>
+
       {showReaction ? (
         <p><i>The hat is thinking...</i></p>
       ) : (
@@ -144,6 +119,15 @@ return (
             ))}
           </div>
         </>
+      )}
+
+      {showHouseModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>🎉 Welcome to {finalHouse}!</h2>
+            <p>The Sorting Hat has spoken. Prepare for glory!</p>
+          </div>
+        </div>
       )}
     </div>
   );
