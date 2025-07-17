@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const questionSchema = new mongoose.Schema({
+  problem_id: {
+    type: String,
+    unique: true,  // important to avoid duplicates
+    required: true,
+  },
   title: String,
   difficulty: { type: String, enum: ['Easy', 'Medium', 'Hard'] },
   description: String,
