@@ -139,7 +139,7 @@ const uniqueCards = Array.from(new Map(cards.map(card => [card._id, card])).valu
             <ul className="card-list">
               {cards.map((card) => (
                 <li key={card._id}>
-                  <img src={`{card.image}`} alt={card.name} />
+                   <img src={`http://localhost:5000${card.image}`} alt={card.name} />
                   
                 </li>
               ))}
