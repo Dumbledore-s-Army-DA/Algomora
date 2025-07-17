@@ -118,8 +118,10 @@ const QuestionsPage = () => {
             <div key={question._id} className="question-item">
               <div className="line">
                 <h3>{question.title}</h3>
-                <p>{question.difficulty}</p>
-                <p><strong>Shards Reward:</strong> {question.shardsReward}</p>
+                <p className={`difficulty-tag ${question.difficulty.toLowerCase()}`}>
+  {question.difficulty}
+</p>
+                <p><strong>Reward:</strong> {question.shardsReward} ✶</p>
                 <Link to={`/solve/${question._id}`} className="solve-button">Solve</Link>
               </div>
             </div>

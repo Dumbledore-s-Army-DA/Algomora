@@ -97,17 +97,17 @@ body {
 }
 .modal-overlay h2{
   font-size: 28px;
-  color: rgb(60, 117, 190);
+  color: #c09c0c;
 }
 .modal-content {
   background: #111;
-  color: rgb(60, 117, 190);
-  border: 3px solid rgb(60, 117, 190);
+  color: #c09c0c;
+  border: 3px solid #c09c0c;
   padding: 40px;
   border-radius: 15px;
   font-family: 'Fire';
   text-align: center;
-  box-shadow: 0 0 30px rgb(60, 117, 190);
+  box-shadow: 0 0 30px #c09c0c;
   animation: fadeIn 0.6s ease-out;
 }
 
@@ -115,3 +115,4 @@ body {
   from { opacity: 0; transform: scale(0.7); }
   to { opacity: 1; transform: scale(1); }
 }
+

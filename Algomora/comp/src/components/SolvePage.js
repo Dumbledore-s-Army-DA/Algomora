@@ -114,7 +114,7 @@ const SolvePage = () => {
 
       <h2 className="h3">
         <p className="gg">{question.difficulty}</p>
-        <p className="gg">{question.shardsReward} 𖢻</p>
+        <p className="gg">{question.shardsReward} ✶ </p>
       </h2>
 
       <div className="expected-box">
@@ -217,7 +217,7 @@ const SolvePage = () => {
   ) : (
     <div className="output-box">
       <h3>Output:</h3>
-      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+      {successMessage && <p style={{ color: '#e9dd72', fontWeight: 'bold' }}>{successMessage}</p>}
       <pre>{output}</pre>
     </div>
   )}

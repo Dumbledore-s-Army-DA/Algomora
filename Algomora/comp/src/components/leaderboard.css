@@ -6,14 +6,17 @@
   border: 2px solid var(--accent);
   border-radius: 15px;
   font-family: 'Fire', serif;
-  color: var(--text);
+  
   box-shadow: 0 0 20px rgba(0,0,0,0.5);
   text-align: center;
+  color: rgb(82, 44, 18);
 }
+
 
 h2{
     font-size: 36px;
-    color: rgb(10, 2, 20);
+    color:  #ddb30c;
+
 }
 /* Heading */
 .leaderboard-title {

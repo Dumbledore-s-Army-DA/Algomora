@@ -310,6 +310,7 @@ body.hufflepuff .house-icon3 {
 }
 .cards-section h4{
   font-size: 24px;
+  color: rgb(82, 44, 18);
 }
 .card-list {
   display: flex;      
@@ -385,10 +386,12 @@ body.hufflepuff .house-icon3 {
 }
   .recommendations-section h4{
     font-size: 24px;
+    color: rgb(82, 44, 18);
   }
 
   .profile-details h3{
-    font-size: 32px;
+    font-size: 34px;
+    color: rgb(82, 44, 18);
   }
 
   .shards {
