@@ -13,6 +13,7 @@ import TopicForm from './components/TopicForm';
 import EventsPage from './components/EventsPage'; // ✅ Add this import!
 import './components/question.css'; // or wherever it is located
 import LeaderboardPage from './components/LeaderboardPage';
+import DebuggerEvent from './components/DebuggerEvent';
 // ✅ You can import your Events CSS directly inside EventsPage instead, if needed
 
 const App = () => {
@@ -30,8 +31,11 @@ const App = () => {
           <Route path="/sorting" element={<SortingHatPage />} />
           <Route path="/shards" element={<ShardsPage />} />
           <Route path="/topicform" element={<TopicForm />} />
-          <Route path="/events" element={<EventsPage />} /> {/* ✅ New Events route */}
+  {/* ✅ New Events route */}
           <Route path="/leaderboard" element={<LeaderboardPage />} />
+          <Route path="/debugger-event" element={<DebuggerEvent />} />
+
+
         </Routes>
       </div>
       

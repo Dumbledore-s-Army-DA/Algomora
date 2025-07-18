@@ -26,3 +26,7 @@ export const getEvents = () =>
 
 export const getEventById = (eventId) =>
   axios.get(`${API_URL}/events/${eventId}`);
+
+export const getLeaderboard = () =>
+  axios.get(`${API_URL}/leaderboard`);
+

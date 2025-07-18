@@ -17,6 +17,10 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/userProfile', userProfileRoutes);
+const debuggerRoutes = require('../routes/debuggerRoutes');
+app.use('/api/debugger', debuggerRoutes);
+
+
 
 // Routes
 app.use('/api/questions', questionRoutes);
