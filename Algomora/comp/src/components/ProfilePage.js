@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 import '../components/profile.css';
-
+import { useNavigate } from 'react-router-dom';
 const ProfilePage = () => {
   const [userData, setUserData] = useState(null);
   const [name, setName] = useState('');
@@ -11,7 +11,7 @@ const ProfilePage = () => {
   const [house, setHouse] = useState(null);
   const [recommendedQuestions, setRecommendedQuestions] = useState([]);
   const fileInputRef = useRef(null);
-
+  const navigate = useNavigate();
   const userId = localStorage.getItem('userId');
 
   useEffect(() => {
@@ -46,15 +46,39 @@ const ProfilePage = () => {
 
     const fetchRecommendations = async () => {
   try {
-    const response = await axios.post("http://localhost:5001/recommend", {
+    // 🔁 Step 1: Send userId to ML recommendation API
+    const res = await axios.post(`http://127.0.0.1:5001/recommend`, {
       user_id: userId,
     });
-    setRecommendedQuestions(response.data.recommendations || []);
-    console.log("✅ Got recommendations:", response.data.recommendations);
-  } catch (err) {
-    console.error("❌ Error fetching recommendations:", err);
+
+    console.log("🧠 Raw recommendation response:", res.data);
+
+    // ✅ Step 2: Extract recommendations safely
+    const recommendations = res.data.recommendations || [];
+
+    console.log("🧠 Type of recommendations:", typeof recommendations);
+    console.log("🧠 Is Array:", Array.isArray(recommendations));
+
+    // ✅ Step 3: Map question_id from ML to problemIds for DB
+    const problemIds = recommendations.map((rec) => rec.question_id);
+    console.log("📦 Sending problemIds:", problemIds);
+
+    // ✅ Step 4: Send problemIds to backend to fetch full questions
+    const questionsRes = await axios.post(
+      'http://localhost:5000/api/questions/byIds',
+      { problemIds: problemIds }
+    );
+
+    console.log("✅ Recommended Questions:", questionsRes.data);
+
+    // ✅ Step 5: Update state with fetched questions
+    setRecommendedQuestions(questionsRes.data);
+  } catch (error) {
+    console.error("❌ Error fetching recommendations:", error);
   }
 };
+
+
 
     if (userId) {
       fetchUserData();
@@ -84,7 +108,8 @@ const ProfilePage = () => {
         .catch((err) => console.error('Photo upload error:', err));
     }
   };
-const uniqueCards = Array.from(new Map(cards.map(card => [card._id, card])).values());
+
+  const uniqueCards = Array.from(new Map(cards.map(card => [card._id, card])).values());
 
   return (
     <div className='zoom-wrapper'>
@@ -130,17 +155,17 @@ const uniqueCards = Array.from(new Map(cards.map(card => [card._id, card])).valu
               <h3>House : {house}</h3>
               <h3>Wizarding Rank : Null</h3>
               <div className="shards">
-                Shards: {shards}</div>
+                Shards: {shards}
+              </div>
             </div>
           </div>
 
           <div className="cards-section">
             <h4>Cards Earned:</h4>
             <ul className="card-list">
-              {cards.map((card) => (
+              {uniqueCards.map((card) => (
                 <li key={card._id}>
-                  <img src={`{card.image}`} alt={card.name} />
-                  
+                  <img src={`${card.image}`} alt={card.name} />
                 </li>
               ))}
             </ul>
@@ -148,13 +173,19 @@ const uniqueCards = Array.from(new Map(cards.map(card => [card._id, card])).valu
 
           <div className="recommendations-section">
             <h4>🧠 Recommended Questions:</h4>
-            <ul className="recommendation-list">
-              {recommendedQuestions.map((question, idx) => (
-                <li key={idx}>
-                  <strong>{question.question_id}</strong>
-                </li>
+            <div className="question-card-container">
+              {recommendedQuestions.map((q) => (
+                <div className="question-card" key={q.problem_id}>
+                  <h3>{q.title}</h3>
+                  <p><strong>Difficulty:</strong> {q.difficulty}</p>
+                  <p><strong>Shards:</strong> {q.shardsReward} ✶</p>
+                  <button className="solve-btn" onClick={() => navigate(`/solve/${q._id}`)}>
+  Solve
+</button>
+
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </div>

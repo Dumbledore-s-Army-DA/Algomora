@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Question = require('../models/Question');
 
+// Fetch questions by difficulty
 const getQuestionsByDifficulty = async (req, res) => {
   try {
     const difficulty = req.params.difficulty;
@@ -11,6 +12,7 @@ const getQuestionsByDifficulty = async (req, res) => {
   }
 };
 
+// Fetch a single question by its MongoDB _id
 const getQuestionById = async (req, res) => {
   const { id } = req.params;
 
@@ -29,7 +31,24 @@ const getQuestionById = async (req, res) => {
   }
 };
 
+// ✅ Fetch multiple questions by their `problem_id` values (used for ML recommendations)
+const getQuestionsByIds = async (req, res) => {
+  try {
+    const { ids } = req.body;
+
+    if (!Array.isArray(ids)) {
+      return res.status(400).json({ error: 'ids must be an array' });
+    }
+
+    const questions = await Question.find({ problem_id: { $in: ids } });
+    res.json(questions);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error', details: err.message });
+  }
+};
+
 module.exports = {
   getQuestionsByDifficulty,
-  getQuestionById
+  getQuestionById,
+  getQuestionsByIds // ✅ renamed for consistency with route
 };
